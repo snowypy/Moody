@@ -29,7 +29,7 @@ interface MoodGraphProps {
 }
 
 export default function MoodGraph({ moodData }: MoodGraphProps) {
-  const chartRef = useRef<ChartJS>(null)
+  const chartRef = useRef<ChartJS<'line'>>(null)
 
   useEffect(() => {
     if (chartRef.current) {
