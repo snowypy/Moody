@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import MoodInput from './MoodInput'
-import MoodGauge from './MoodGauge'
+import MoodOverview from './MoodOverview'
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function MoodTracker() {
   const [moodData, setMoodData] = useState<{ date: string; mood: number }[]>([])
@@ -30,62 +31,59 @@ export default function MoodTracker() {
     setShowInput(false)
   }
 
-  const averageMood = moodData.length > 0
-    ? moodData.reduce((sum, data) => sum + data.mood, 0) / moodData.length
-    : 0
-
-  const moodPercentage = (averageMood / 10) * 100
-
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* Grid background */}
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 text-white overflow-hidden relative"
+    >
       <div className="absolute inset-0 z-0">
-        <div className="h-full w-full bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+        <div className="h-full w-full bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:20px_34px]"></div>
+      </div>
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500 rounded-full opacity-20 blur-[150px]"></div>
       </div>
 
-      {/* Red glow effect */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-500 rounded-full opacity-20 blur-[100px]"></div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 container mx-auto p-4 flex flex-col items-center justify-center min-h-screen"
-      >
-        <div className="max-w-2xl w-full">
-          <h1 className="text-4xl font-bold mb-4 text-center font-roboto">
-            <span className="bg-gradient-to-r from-red-500 to-red-800 text-transparent bg-clip-text">Moody</span> Tracker
-          </h1>
-          <p className="text-xl mb-8 text-center font-roboto">
-            Track your daily mood with confidence. Our mood tracking tool helps you make informed decisions about your emotional well-being.
-          </p>
-          {showInput ? (
-            <MoodInput onSubmit={handleMoodSubmit} />
-          ) : (
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              className="bg-gray-800 bg-opacity-50 p-6 rounded-lg shadow-lg"
-            >
-              <h2 className="text-2xl mb-4 text-center font-roboto">Mood Overview</h2>
-              <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-                <div className="text-center md:text-left mb-4 md:mb-0">
-                  <p className="text-sm text-gray-400 font-roboto">Average Mood</p>
-                  <p className="text-3xl font-bold font-roboto">{averageMood.toFixed(2)}</p>
-                  <p className="text-sm text-gray-400 font-roboto">
-                    {averageMood > 5 ? 'Positive trend' : 'Room for improvement'}
-                  </p>
-                </div>
-                <MoodGauge percentage={moodPercentage} />
-              </div>
-            </motion.div>
-          )}
+      <div className="relative z-10 container mx-auto p-4 flex flex-col items-center justify-center min-h-screen">
+        <div className="max-w-5xl w-full">
+          <motion.h1 
+            className="text-6xl font-bold mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-indigo-500"
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            Moody
+          </motion.h1>
+          <motion.p 
+            className="text-xl mb-8 text-center text-indigo-200"
+            initial={{ y: -30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            Track your daily mood with confidence. Moody is made to help you motivate yourself!
+          </motion.p>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            {showInput ? (
+              <MoodInput onSubmit={handleMoodSubmit} />
+            ) : (
+              <Card className="bg-indigo-900 bg-opacity-50 backdrop-blur-sm border-indigo-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-center text-indigo-100">Mood Overview</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <MoodOverview moodData={moodData} />
+                </CardContent>
+              </Card>
+            )}
+          </motion.div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   )
 }
 
