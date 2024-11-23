@@ -43,7 +43,7 @@ export default function LandingPage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Track your emotions, understand your patterns, and improve your well-being with our intuitive mood tracking app.
+            Track your emotions, understand your patterns, and improve your well-being with Moody. 
           </motion.p>
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -67,9 +67,9 @@ export default function LandingPage() {
           <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-center text-indigo-100">Key Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: "Daily Mood Tracking", description: "Log your mood every day with our intuitive interface.", icon: Smile },
-              { title: "Insightful Analytics", description: "Visualize your mood patterns with beautiful charts and graphs.", icon: BarChart2 },
-              { title: "Personalized Insights", description: "Receive tailored recommendations based on your mood history.", icon: Lightbulb }
+              { title: "Daily Mood Tracking", description: "Log your mood every day with our interface.", icon: Smile },
+              { title: "Insightful Analytics", description: "Visualize your mood patterns with ShadCN charts and graphs.", icon: BarChart2 },
+              { title: "Personalized Insights", description: "Receive recommendations based on your mood history.", icon: Lightbulb }
             ].map((feature, index) => (
               <motion.div
                 key={index}
