@@ -7,26 +7,23 @@ import { ArrowRight, Smile, BarChart2, Lightbulb } from 'lucide-react'
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* Grid background */}
+      
       <div className="absolute inset-0 z-0">
         <div className="h-full w-full bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:50px_50px]"></div>
       </div>
 
-      {/* Red glow effect */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-500 rounded-full opacity-20 blur-[100px]"></div>
       </div>
 
-      {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 font-roboto text-shadow-glow">
-            Welcome to <span className="bg-gradient-to-r from-red-500 to-red-800 text-transparent bg-clip-text">Moody</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 font-roboto">
+             Welcome to <span className="bg-gradient-to-r from-[#ff0000] to-[#ff0000] text-transparent bg-clip-text">Moody</span>
           </h1>
           <p className="text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-roboto">
             Track your emotions, understand your patterns, and improve your well-being with our intuitive mood tracking app.
@@ -45,7 +42,6 @@ export default function LandingPage() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
           className="mt-20"
         >
           <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-center font-roboto">Key Features</h2>
